@@ -13,6 +13,7 @@ const POKEMON_API = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 class App extends Component {
   state = {
     pokedex: [],
+    perPage: 20,
     page: 1
   }
 
