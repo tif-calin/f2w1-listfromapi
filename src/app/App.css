@@ -9,3 +9,24 @@
   background-color: #f1ffff;
   font-family: 'Quicksand', sans-serif;
 }
+
+.App > main {
+  min-width: 70%;
+  max-width: 1000px;
+  width: 70%;
+  width: clamp(70%, 70%, 1000px);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wrapper-h, .wrapper-v {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-v {
+  flex-direction: column;
+}

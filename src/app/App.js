@@ -44,7 +44,7 @@ class App extends Component {
       <div className="App">
         <Header/>
 
-        <main>
+        <main className="wrapper-v">
           <Search/>
           <PokeList pokedex={pokedex}/>
         </main>
