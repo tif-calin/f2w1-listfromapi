@@ -12,7 +12,8 @@ const POKEMON_API = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 
 class App extends Component {
   state = {
-    pokedex: []
+    pokedex: [],
+    page: 1
   }
 
   componentDidMount() {
@@ -23,7 +24,9 @@ class App extends Component {
     try {
       const response = await request.get(POKEMON_API);
 
-      this.setState(response.results);
+      console.log(response.body.results);
+
+      this.setState({ pokedex: response.body.results });
     } catch (err) {
       console.log(err);
     }

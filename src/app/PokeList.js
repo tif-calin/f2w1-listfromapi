@@ -4,10 +4,11 @@ import './PokeList.css';
 export class PokemonItem extends Component {
 
   render() {
-    console.log('hi');
+    const { pokemon } = this.props;
+
     return (
       <li className="PokemonItem">
-        hi
+        {pokemon.pokemon}
       </li>
     );
   }
@@ -21,7 +22,7 @@ export default class PokeList extends Component {
 
     return (
       <ul className="PokeList">
-        {pokedex.map(pokemon => <PokemonItem key={pokemon._id} pokemon={pokemon}/>)}
+        {pokedex.map(pokemon => (<PokemonItem key={pokemon._id} pokemon={pokemon}/>))}
       </ul>
     );
   }
