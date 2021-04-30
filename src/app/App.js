@@ -53,7 +53,7 @@ class App extends Component {
 
   // handlers
   onSearch = (query) => {
-    this.setState(query, () => this.fetchPokedex(query));
+    this.setState(query, () => this.fetchPokedex());
   }
 
   // render
