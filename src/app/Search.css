@@ -1,0 +1,26 @@
+.Search {
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-left: 1rem;
+  margin-right: 0.25rem;
+}
+
+label::after {
+  content: ':';
+}
+
+.search {
+  width: 10rem;
+}
+
+.page-nav {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-number {
+  width: 2.5rem;
+}

@@ -22,16 +22,13 @@ class App extends Component {
   }
 
   async fetchPokedex() {
+
     try {
       const response = await request.get(POKEMON_API);
-
-      console.log(response.body.results);
-
       this.setState({ pokedex: response.body.results });
     } catch (err) {
       console.log(err);
-    }
-    finally {
+    } finally {
       this.setState([]);
     }
 
