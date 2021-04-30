@@ -38,6 +38,7 @@ class App extends Component {
     };
     if (search) query[searchField] = search;
     if (reverse) query.direction = 'desc';
+    else query.direction = 'asc';
 
     console.log(query);
 
