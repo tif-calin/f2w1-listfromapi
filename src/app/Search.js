@@ -50,18 +50,48 @@ export default class Search extends Component {
   }
 
   handleSearchFieldChange = e => {
-    this.setState({ searchField: e.target.value });
+    this.setState({ searchField: e.target.value }, () => this.handleSubmit(e));
+  }
+
+  handleSortChange = e => {
+    this.setState({ sort: e.target.value }, () => this.handleSubmit(e));
+  }
+
+  handleReverseClick = e => {
+    this.setState({ reverse: !this.state.reverse }, () => this.handleSubmit(e));
+  }
+
+  handlePrevPageClick = e => {
+    this.setState({ page: Math.max(1, this.state.page - 1) }, () => this.handleSubmit(e));
+  }
+
+  handleNextPageClick = e => {
+    this.setState({ page: Math.max(1, this.state.page + 1) }, () => this.handleSubmit(e));
+  }
+
+  handlePageChange = e => {
+    const maxPage = Math.ceil(801 / this.state.perPage);
+    const page = Number(e.target.value);
+    if (page) this.setState({ page: Math.min(page, maxPage) }, () => this.handleSubmit(e));
+  }
+
+  handlePerPageChange = e => {
+    const perPage = Number(e.target.value);
+    this.setState({ perPage: perPage }, () => this.handleSubmit(e));
   }
 
   // render Search component
   render() {
+    
     return (
       <form className="Search wrapper-h" onSubmit={this.handleSubmit}>
         {/*search*/}
         <label htmlFor="search">search</label>
         <input className="search" name="search" placeholder="search" onChange={this.handleSearchChange}/>
-        <select className="searchField" name="searchField">
+        <select className="searchField" name="searchField" onChange={this.handleSearchFieldChange}>
           <option value="pokemon">name</option>
+          <option value="species_id">pokedex #</option>
+          <option value="ability_1">ability</option>
         </select>
 
         {/*filters*/}
@@ -70,7 +100,7 @@ export default class Search extends Component {
 
         {/*sort*/}
         <label htmlFor="sort">sort by</label>
-        <select className="sort" name="sort">
+        <select className="sort" name="sort" onChange={this.handleSortChange}>
           <option value="species_id">pokedex #</option>
           <option value="pokemon">name</option>
           <option value="height">height</option>
@@ -81,19 +111,19 @@ export default class Search extends Component {
           <option value="special_attack">special attack</option>
           <option value="special_defence">special defence</option>
         </select>
-        <button className="reverse" name="reverse">🔃</button>
+        <button className="reverse" name="reverse" onClick={this.handleReverseClick}>🔃</button>
 
         {/*pages*/}
         <label htmlFor="page-nav">page nav</label>
         <fieldset className="page-nav" name="page-nav">
-          <button className="page-button">&#9664;</button>
-          <input className="page-number" min="0" type="number"/>
-          <button className="page-button">&#9654;</button>
+          <button className="page-button" onClick={this.handlePrevPageClick}>&#9664;</button>
+          <input className="page-number" min="1" type="number" onChange={this.handlePageChange}/>
+          <button className="page-button" onClick={this.handleNextPageClick}>&#9654;</button>
         </fieldset>
 
         {/*results per page*/}
         <label htmlFor="per-page">per page</label>
-        <select className="per-page" name="per-page">
+        <select className="per-page" name="per-page" onChange={this.handlePerPageChange}>
           <option value="20">20</option>
           <option value="50">50</option>
           <option value="100">100</option>
