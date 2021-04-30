@@ -52,10 +52,11 @@ class App extends Component {
   }
 
   // handlers
-  handleSearch = (query) => {
-    this.fetchPokedex(query);
+  onSearch = (query) => {
+    this.setState(query, () => this.fetchPokedex(query));
   }
 
+  // render
   render() {
     const { pokedex } = this.state;
 
@@ -65,7 +66,7 @@ class App extends Component {
 
         <main className="wrapper-v">
           <Search/>
-          <PokeList pokedex={pokedex}/>
+          <PokeList pokedex={pokedex} onSearch={this.onSearch}/>
         </main>
 
         <Footer/>      
