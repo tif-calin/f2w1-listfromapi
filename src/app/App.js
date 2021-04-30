@@ -39,6 +39,8 @@ class App extends Component {
     if (search) query[searchField] = search;
     if (reverse) query.direction = 'desc';
 
+    console.log(query);
+
     // try to get the response, query it, and set the state
     try {
       let response = await request.get(POKEMON_API).query(query);
@@ -65,8 +67,8 @@ class App extends Component {
         <Header/>
 
         <main className="wrapper-v">
-          <Search/>
-          <PokeList pokedex={pokedex} onSearch={this.onSearch}/>
+          <Search onSearch={this.onSearch}/>
+          <PokeList pokedex={pokedex}/>
         </main>
 
         <Footer/>      
