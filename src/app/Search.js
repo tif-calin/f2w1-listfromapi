@@ -82,6 +82,8 @@ export default class Search extends Component {
 
   // render Search component
   render() {
+
+    const { allTypes, allEggGroups, allShapes } = this.state;
     
     return (
       <form className="Search wrapper-h" onSubmit={this.handleSubmit}>
@@ -96,7 +98,27 @@ export default class Search extends Component {
 
         {/*filters*/}
         <label htmlFor="filters">filter</label>
-        <button className="filters">⬇️</button>
+        <div className="filters">
+          <button>⬇️</button>
+          <div className="filters-dropdown wrapper-v">
+            <fieldset>
+              <legend>type 1</legend>
+              {allTypes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+            </fieldset>
+            <fieldset>
+              <legend>type 2</legend>
+              {allTypes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+            </fieldset>
+            <fieldset>
+              <legend>egg group</legend>
+              {allEggGroups.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+            </fieldset>
+            <fieldset>
+              <legend>shape</legend>
+              {allShapes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+            </fieldset>
+          </div>
+        </div>
 
         {/*sort*/}
         <label htmlFor="sort">sort by</label>

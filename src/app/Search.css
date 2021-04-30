@@ -2,12 +2,12 @@
   margin-bottom: 1rem;
 }
 
-label {
+.Search > label {
   margin-left: 1rem;
   margin-right: 0.25rem;
 }
 
-label::after {
+.Search > label::after {
   content: ':';
 }
 
@@ -23,4 +23,25 @@ label::after {
 
 .page-number {
   width: 2.5rem;
+}
+
+.filters:hover .filters-dropdown {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: flex-start;
+}
+
+.filters-dropdown {
+  display: none;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0 1rem 1rem 1rem;
+}
+
+.filters-dropdown fieldset {
+  display: flex;
+  flex-direction: column;
 }
