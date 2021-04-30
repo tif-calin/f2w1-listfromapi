@@ -11,27 +11,49 @@ import PokeList from './PokeList';
 const POKEMON_API = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 
 class App extends Component {
+  // state
   state = {
     pokedex: [],
-    perPage: 20,
-    page: 1
+    perPage: 50,
+    page: 1,
+    search: '',
+    searchField: 'pokemon',
+    sort: 'species_id',
+    reverse: false
   }
 
+  // api stuff
   componentDidMount() {
     this.fetchPokedex();
   }
 
   async fetchPokedex() {
 
+    // create query object
+    const { search, searchField, sort, page, perPage, reverse } = this.state;
+    const query = {
+      perPage: perPage,
+      page: page,
+      sort: sort
+    };
+    if (search) query[searchField] = search;
+    if (reverse) query.direction = 'desc';
+
+    // try to get the response, query it, and set the state
     try {
-      const response = await request.get(POKEMON_API);
+      let response = await request.get(POKEMON_API).query(query);
       this.setState({ pokedex: response.body.results });
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
-    } finally {
-      this.setState([]);
+      this.setState({ pokedex: [] });
     }
 
+  }
+
+  // handlers
+  handleSearch = (query) => {
+    this.fetchPokedex(query);
   }
 
   render() {
