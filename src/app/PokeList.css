@@ -8,3 +8,16 @@
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 10px;
 }
+
+.PokemonCard {
+  height: 12rem;
+  border-radius: 1rem;
+}
+
+.PokemonCard:hover {
+  background-color: #0001;
+}
+
+.PokemonCard img {
+  height: 50%;
+}

@@ -1,14 +1,15 @@
 import { Component } from 'react';
 import './PokeList.css';
 
-export class PokemonItem extends Component {
+export class PokemonCard extends Component {
 
   render() {
     const { pokemon } = this.props;
 
     return (
-      <li className="PokemonItem">
-        {pokemon.pokemon}
+      <li className="PokemonCard wrapper-v">
+        <h4>{pokemon.pokemon}</h4>
+        <img src={pokemon.url_image} alt={pokemon.pokemon}/>
       </li>
     );
   }
@@ -22,7 +23,7 @@ export default class PokeList extends Component {
 
     return (
       <ul className="PokeList">
-        {pokedex.map(pokemon => (<PokemonItem key={pokemon._id} pokemon={pokemon}/>))}
+        {pokedex.map(pokemon => (<PokemonCard key={pokemon._id} pokemon={pokemon}/>))}
       </ul>
     );
   }
