@@ -12,7 +12,12 @@
 }
 
 .search {
-  width: 10rem;
+  width: 6rem;
+  transition: all 0.2s ease;
+}
+
+.search:focus {
+  width: 12rem;
 }
 
 .page-nav {
@@ -44,4 +49,9 @@
 .filters-dropdown fieldset {
   display: flex;
   flex-direction: column;
+}
+
+.emoji-button {
+  padding-right: 0;
+  padding-left: 0;
 }

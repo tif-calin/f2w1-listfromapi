@@ -99,7 +99,7 @@ export default class Search extends Component {
         {/*filters*/}
         <label htmlFor="filters">filter</label>
         <div className="filters">
-          <button>⬇️</button>
+          <button className="emoji-button">⬇️</button>
           <div className="filters-dropdown wrapper-v">
             <fieldset>
               <legend>type 1</legend>
@@ -133,14 +133,14 @@ export default class Search extends Component {
           <option value="special_attack">special attack</option>
           <option value="special_defence">special defence</option>
         </select>
-        <button className="reverse" name="reverse" onClick={this.handleReverseClick}>🔃</button>
+        <button className="reverse emoji-button" name="reverse" onClick={this.handleReverseClick}>🔃</button>
 
         {/*pages*/}
         <label htmlFor="page-nav">page nav</label>
         <fieldset className="page-nav" name="page-nav">
-          <button className="page-button" onClick={this.handlePrevPageClick}>&#9664;</button>
+          <button className="page-button emoji-button" onClick={this.handlePrevPageClick}>&#9664;</button>
           <input className="page-number" min="1" type="number" onChange={this.handlePageChange}/>
-          <button className="page-button" onClick={this.handleNextPageClick}>&#9654;</button>
+          <button className="page-button emoji-button" onClick={this.handleNextPageClick}>&#9654;</button>
         </fieldset>
 
         {/*results per page*/}
