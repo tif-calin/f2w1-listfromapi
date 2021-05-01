@@ -12,12 +12,56 @@
 .PokemonCard {
   height: 12rem;
   border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.PokemonCard h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .PokemonCard:hover {
   background-color: #0001;
 }
 
+.PokemonCard:hover .pokemon-stats {
+  display: grid;
+}
+
 .PokemonCard img {
   height: 50%;
+}
+
+.pokemon-stats {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0px 0px 4px black;
+}
+
+.pokemon-stats span:nth-child(1) {
+  color: red;
+}
+
+.pokemon-stats span:nth-child(2) {
+  color: orange;
+}
+
+.pokemon-stats span:nth-child(3) {
+  color: yellow;
+}
+
+.pokemon-stats span:nth-child(4) {
+  color: blue;
+}
+
+.pokemon-stats span:nth-child(5) {
+  color: green;
+}
+
+.pokemon-stats span:nth-child(6) {
+  color: violet;
 }

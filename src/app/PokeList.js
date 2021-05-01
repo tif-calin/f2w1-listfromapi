@@ -10,6 +10,14 @@ export class PokemonCard extends Component {
       <li className="PokemonCard wrapper-v">
         <h4>{pokemon.pokemon}</h4>
         <img src={pokemon.url_image} alt={pokemon.pokemon}/>
+        <div className="pokemon-stats">
+          <span>{pokemon.hp}</span>
+          <span>{pokemon.attack}</span>
+          <span>{pokemon.defense}</span>
+          <span>{pokemon.special_attack}</span>
+          <span>{pokemon.special_defense}</span>
+          <span>{pokemon.speed}</span>
+        </div>
       </li>
     );
   }
