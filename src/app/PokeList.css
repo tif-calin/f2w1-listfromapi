@@ -30,6 +30,7 @@
 
 .PokemonCard img {
   height: 50%;
+  filter: drop-shadow(5px 5px 5px gray);
 }
 
 .pokemon-stats {
