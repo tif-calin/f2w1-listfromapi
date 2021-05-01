@@ -14,12 +14,16 @@ export default class Search extends Component {
     allTypes: [],
     allShapes: [],
     allEggGroups: [],
-    perPage: 50,
+    perPage: 24,
     page: 1,
     search: '',
     searchField: 'pokemon',
     sort: 'species_id',
-    reverse: false
+    reverse: false,
+    filterType1: [],
+    filterType2: [],
+    filterEggGroup: [],
+    filterShape: []
   }
 
   async fetchFilters() {
@@ -41,7 +45,7 @@ export default class Search extends Component {
 
   // handlers
   handleSubmit = e => {
-    e.preventDefault();
+    if (e.target.type !== 'checkbox') e.preventDefault();
     this.props.onSearch(this.state);
   }
 
@@ -90,6 +94,26 @@ export default class Search extends Component {
     this.setState({ perPage: perPage, page: Math.min(this.state.page, maxPage) }, () => this.handleSubmit(e));
   }
 
+  handleCheckType1 = e => {
+    if (e.target.checked) this.setState({ filterType1: [...this.state.filterType1, e.target.value] }, () => this.handleSubmit(e));
+    else this.setState({ filterType1: this.state.filterType1.filter(type => type !== e.target.value) }, () => this.handleSubmit(e));
+  }
+
+  handleCheckType2 = e => {
+    if (e.target.checked) this.setState({ filterType2: [...this.state.filterType2, e.target.value] }, () => this.handleSubmit(e));
+    else this.setState({ filterType2: this.state.filterType2.filter(type => type !== e.target.value) }, () => this.handleSubmit(e));
+  }
+
+  handleCheckEggGroup = e => {
+    if (e.target.checked) this.setState({ filterEggGroup: [...this.state.filterEggGroup, e.target.value] }, () => this.handleSubmit(e));
+    else this.setState({ filterEggGroup: this.state.filterEggGroup.filter(type => type !== e.target.value) }, () => this.handleSubmit(e));
+  }
+
+  handleCheckShape = e => {
+    if (e.target.checked) this.setState({ filterShape: [...this.state.filterShape, e.target.value] }, () => this.handleSubmit(e));
+    else this.setState({ filterShape: this.state.filterShape.filter(type => type !== e.target.value) }, () => this.handleSubmit(e));
+  }
+
   // render Search component
   render() {
 
@@ -113,19 +137,19 @@ export default class Search extends Component {
           <div className="filters-dropdown wrapper-v">
             <fieldset>
               <legend>type 1</legend>
-              {allTypes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+              {allTypes.map(type => <span key={type}><input value={type} onChange={this.handleCheckType1} type="checkbox"/><label>{type}</label></span>)}
             </fieldset>
             <fieldset>
               <legend>type 2</legend>
-              {allTypes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+              {allTypes.map(type => <span key={type}><input value={type} onChange={this.handleCheckType2} type="checkbox"/><label>{type}</label></span>)}
             </fieldset>
             <fieldset>
               <legend>egg group</legend>
-              {allEggGroups.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+              {allEggGroups.map(type => <span key={type}><input value={type} onChange={this.handleCheckEggGroup} type="checkbox"/><label>{type}</label></span>)}
             </fieldset>
             <fieldset>
               <legend>shape</legend>
-              {allShapes.map(type => <span><input type="checkbox"/><label>{type}</label></span>)}
+              {allShapes.map(type => <span key={type}><input value={type} onChange={this.handleCheckShape} type="checkbox"/><label>{type}</label></span>)}
             </fieldset>
           </div>
         </div>
