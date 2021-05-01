@@ -61,12 +61,21 @@ export default class Search extends Component {
     this.setState({ reverse: !this.state.reverse }, () => this.handleSubmit(e));
   }
 
+  handleFirstPageClick = e => {
+    this.setState({ page: 1 }, () => this.handleSubmit(e));
+  }
+
   handlePrevPageClick = e => {
     this.setState({ page: Math.max(1, this.state.page - 1) }, () => this.handleSubmit(e));
   }
 
   handleNextPageClick = e => {
-    this.setState({ page: Math.max(1, this.state.page + 1) }, () => this.handleSubmit(e));
+    const maxPage = Math.ceil(801 / this.state.perPage);
+    this.setState({ page: Math.min(this.state.page + 1, maxPage) }, () => this.handleSubmit(e));
+  }
+
+  handleLastPageClick = e => {
+    this.setState({ page: Math.ceil(801 / this.state.perPage) }, () => this.handleSubmit(e));
   }
 
   handlePageChange = e => {
@@ -77,7 +86,8 @@ export default class Search extends Component {
 
   handlePerPageChange = e => {
     const perPage = Number(e.target.value);
-    this.setState({ perPage: perPage }, () => this.handleSubmit(e));
+    const maxPage = Math.ceil(801 / perPage);
+    this.setState({ perPage: perPage, page: Math.min(this.state.page, maxPage) }, () => this.handleSubmit(e));
   }
 
   // render Search component
@@ -89,7 +99,7 @@ export default class Search extends Component {
       <form className="Search wrapper-h" onSubmit={this.handleSubmit}>
         {/*search*/}
         <label htmlFor="search">search</label>
-        <input className="search" name="search" placeholder="search" onChange={this.handleSearchChange}/>
+        <input className="search" name="search" onChange={this.handleSearchChange}/>
         <select className="searchField" name="searchField" onChange={this.handleSearchFieldChange}>
           <option value="pokemon">name</option>
           <option value="species_id">pokedex #</option>
@@ -138,17 +148,19 @@ export default class Search extends Component {
         {/*pages*/}
         <label htmlFor="page-nav">page nav</label>
         <fieldset className="page-nav" name="page-nav">
+          <button className="page-button emoji-button" onClick={this.handleFirstPageClick}>|&#9664;</button>
           <button className="page-button emoji-button" onClick={this.handlePrevPageClick}>&#9664;</button>
-          <input className="page-number" min="1" type="number" onChange={this.handlePageChange}/>
+          <input className="page-number" min="1" type="number" value={this.state.page} onChange={this.handlePageChange}/>
           <button className="page-button emoji-button" onClick={this.handleNextPageClick}>&#9654;</button>
+          <button className="page-button emoji-button" onClick={this.handleLastPageClick}>&#9654;|</button>
         </fieldset>
 
         {/*results per page*/}
         <label htmlFor="per-page">per page</label>
         <select className="per-page" name="per-page" onChange={this.handlePerPageChange}>
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
+          <option value="24" default>24</option>
+          <option value="72">72</option>
+          <option value="144">144</option>
         </select>
       </form>
     );

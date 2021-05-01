@@ -14,7 +14,7 @@ class App extends Component {
   // state
   state = {
     pokedex: [],
-    perPage: 50,
+    perPage: 24,
     page: 1,
     search: '',
     searchField: 'pokemon',
